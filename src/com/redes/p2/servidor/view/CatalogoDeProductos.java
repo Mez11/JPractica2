@@ -88,8 +88,7 @@ public class CatalogoDeProductos {
                 btnAgregarProducto.addActionListener(new ActionListener(){
                
                     public void actionPerformed(ActionEvent e) {
-                       AgregarProducto miProducto = new AgregarProducto();
-                       miProducto.AgregarProducto();
+                       new AgregarProducto();
                     }
                     
                 });

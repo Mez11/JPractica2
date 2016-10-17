@@ -1,34 +1,34 @@
 package com.redes.p2.servidor.view;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.MalformedURLException;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import com.redes.dao.ProductosDao;
-import com.redes.model.Productos;
 
-public class AgregarProducto {
 
-	private JFrame frmAgregarProducto;
+public class AgregarProducto extends JFrame {
+
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-        private JLabel lblImagen;
-        private JPanel filesPanel;
+    private JLabel lblImagen;
+    private JPanel filesPanel;
 	/**
 	 * Launch the application.
 	 */
@@ -36,8 +36,7 @@ public class AgregarProducto {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgregarProducto window = new AgregarProducto();
-					window.frmAgregarProducto.setVisible(true);
+					new AgregarProducto().setVisible( true );
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,30 +44,19 @@ public class AgregarProducto {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public void AgregarProducto() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmAgregarProducto = new JFrame();
-		frmAgregarProducto.setTitle("Agregar producto");
-		frmAgregarProducto.setBounds(100, 100, 450, 300);
-		frmAgregarProducto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmAgregarProducto.getContentPane().setLayout(null);
+	public AgregarProducto() {
+		setTitle("Agregar producto");
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
                 
-                filesPanel = new JPanel();
-		filesPanel.setLayout(new BoxLayout(filesPanel, BoxLayout.Y_AXIS));
+        //filesPanel = new JPanel();
+		//filesPanel.setLayout(new BoxLayout(filesPanel, BoxLayout.Y_AXIS));
 		
 		lblImagen = new JLabel("Imagen");
 		lblImagen.setBounds(181, 12, 70, 45);
-                filesPanel.add(lblImagen);
-		frmAgregarProducto.getContentPane().add(lblImagen);
+        //filesPanel.add(lblImagen);
+		getContentPane().add(lblImagen);
 		
 		JButton btnEleguirImagen = new JButton("Eleguir imagen");
 		btnEleguirImagen.addActionListener(new ActionListener() {
@@ -78,86 +66,85 @@ public class AgregarProducto {
 			}
 		});
 		btnEleguirImagen.setBounds(146, 69, 144, 25);
-		frmAgregarProducto.getContentPane().add(btnEleguirImagen);
+		getContentPane().add(btnEleguirImagen);
 		
 		JLabel lblId = new JLabel("Id");
 		lblId.setBounds(22, 103, 70, 15);
-		frmAgregarProducto.getContentPane().add(lblId);
+		getContentPane().add(lblId);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(22, 130, 70, 15);
-		frmAgregarProducto.getContentPane().add(lblNombre);
+		getContentPane().add(lblNombre);
 		
 		JLabel lblNewLabel = new JLabel("Precio");
 		lblNewLabel.setBounds(22, 157, 70, 15);
-		frmAgregarProducto.getContentPane().add(lblNewLabel);
+		getContentPane().add(lblNewLabel);
 		
 		JLabel lblExistencias = new JLabel("Existencias");
 		lblExistencias.setBounds(22, 184, 96, 15);
-		frmAgregarProducto.getContentPane().add(lblExistencias);
+		getContentPane().add(lblExistencias);
 		
 		JLabel lblNewLabel_1 = new JLabel("Descripcion");
 		lblNewLabel_1.setBounds(22, 211, 106, 15);
-		frmAgregarProducto.getContentPane().add(lblNewLabel_1);
+		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblOrigen = new JLabel("Origen");
 		lblOrigen.setBounds(22, 238, 70, 15);
-		frmAgregarProducto.getContentPane().add(lblOrigen);
+		getContentPane().add(lblOrigen);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(319, 206, 117, 25);
-		frmAgregarProducto.getContentPane().add(btnCancelar);
+		getContentPane().add(btnCancelar);
                 btnCancelar.addActionListener(new ActionListener() {
                         @Override
 			public void actionPerformed(ActionEvent e) {
-                           frmAgregarProducto.dispose();
+                           dispose();
 			}
 		});
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(319, 147, 117, 25);
-		frmAgregarProducto.getContentPane().add(btnAceptar);
+		getContentPane().add(btnAceptar);
                 btnAceptar.addActionListener(new ActionListener() {
                         @Override
 			public void actionPerformed(ActionEvent e) {
-                         //AGREGAR PRODUCTOS
-                            ProductosDao miProducto = new ProductosDao();
-                            miProducto.getProductos();
+				//AGREGAR PRODUCTOS
+                new ProductosDao().getProductos();
 			}
 		});
 		
 		textField = new JTextField();
 		textField.setBounds(110, 106, 124, 19);
-		frmAgregarProducto.getContentPane().add(textField);
+		getContentPane().add(textField);
 		textField.setColumns(10);
 		textField.setEditable(false);
                 
 		textField_1 = new JTextField();
 		textField_1.setBounds(110, 128, 124, 19);
-		frmAgregarProducto.getContentPane().add(textField_1);
+		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
               
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(110, 155, 124, 19);
-		frmAgregarProducto.getContentPane().add(textField_2);
+		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
 		textField_3.setBounds(110, 182, 124, 19);
-		frmAgregarProducto.getContentPane().add(textField_3);
+		getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
 		textField_4.setBounds(110, 209, 124, 19);
-		frmAgregarProducto.getContentPane().add(textField_4);
+		getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
 		textField_5.setBounds(110, 236, 124, 19);
-		frmAgregarProducto.getContentPane().add(textField_5);
+		getContentPane().add(textField_5);
 		textField_5.setColumns(10);
-                frmAgregarProducto.setVisible(true);
+                setVisible(true);
 	}
         
         public void getImagen(){
@@ -187,7 +174,7 @@ public class AgregarProducto {
 		
 			//filesPanel.add(lblImagen );
 		
-		frmAgregarProducto.getContentPane().add(lblImagen);
+		getContentPane().add(lblImagen);
 		
 	}
 
