@@ -3,16 +3,12 @@ package com.redes.p2.servidor.view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.net.MalformedURLException;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -21,6 +17,10 @@ import com.redes.dao.ProductosDao;
 
 public class AgregarProducto extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2480478489172891737L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -28,7 +28,7 @@ public class AgregarProducto extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
     private JLabel lblImagen;
-    private JPanel filesPanel;
+    //private JPanel filesPanel;
 	/**
 	 * Launch the application.
 	 */
@@ -153,16 +153,11 @@ public class AgregarProducto extends JFrame {
             chooser.setFileFilter(filtroImagen);
             int r=chooser.showOpenDialog(null);
     if(r==JFileChooser.APPROVE_OPTION){
-     try {
-      File f=chooser.getSelectedFile();
-      
-      ImageIcon img=new ImageIcon(chooser.getSelectedFile().toURL());
+      ImageIcon img = new ImageIcon( chooser.getSelectedFile( ).getAbsolutePath( ) );
+      //toUrl is deprecated
+      //ImageIcon img=new ImageIcon(chooser.getSelectedFile().toURL());
       paintModel(img);
      
-     } catch (MalformedURLException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
-     }
     }
             
         }
